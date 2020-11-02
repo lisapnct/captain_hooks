@@ -15,9 +15,11 @@ const HookCounter = (props) => {
     setCounter(counter + 1);
   }
 
-  useEffect(() => {
-    console.log("Hello world");
-  }, [counter]);
+  // useEffect(() => {
+  //   return () => {
+  //     console.log('I unmounted')
+  //   }
+  // }, [counter]);
 
   useEffect(() => {
     console.log("Hello world");

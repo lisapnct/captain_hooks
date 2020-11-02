@@ -8,6 +8,7 @@ import axios from "axios";
 
 export function useForm(initialValues = {}) {
   const [formValues, setFormValues] = useState(initialValues);
+  console.log(formValues, "intial form values");
 
   function handleChange(event) {
     const value =
@@ -24,9 +25,19 @@ export function useForm(initialValues = {}) {
     });
   }
 
+  function getInputProps(fieldName) {
+    return {
+      value: formValues[fieldName] || "",
+      onChange: handleChange,
+      name: fieldName,
+      checked: formValues[fieldName] || "",
+    };
+  }
+
   return {
     formValues,
     handleChange,
+    getInputProps,
   };
 }
 

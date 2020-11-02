@@ -1,26 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "hooks/useForm";
 import Button from "Components/Button";
 import "styles/Form.scss";
+import { UserContext } from "./UserContext";
 
 const Form = (props) => {
-  const { formValues, handleChange } = useForm({});
+  const { formValues, handleChange, getInputProps } = useForm();
+
+  const context = useContext(UserContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formValues);
   };
 
-  console.log(formValues);
   return (
     <>
-      <pre>{JSON.stringify(formValues, null, 2)}</pre>
-      <form
-        autoComplete="off"
-        className="Form"
-        onSubmit={handleSubmit}
-        onChange={handleChange}
-      >
+      <pre>{JSON.stringify(context, null, 2)}</pre>
+      <form autoComplete="off" className="Form" onSubmit={handleSubmit}>
         <h1 className="Form__title">Subscribe</h1>
         <div className="Form__group">
           <label className="Form__label" htmlFor="firstName">
@@ -30,8 +27,7 @@ const Form = (props) => {
             className="Form__input"
             id="firstName"
             type="text"
-            name="firstName"
-            defaultValue={formValues.name}
+            {...getInputProps("firstName")}
           />
         </div>
         <div className="Form__group">
@@ -42,14 +38,19 @@ const Form = (props) => {
             className="Form__input"
             id="lastName"
             type="text"
-            name="lastName"
+            {...getInputProps("lastName")}
           />
         </div>
         <div className="Form__group">
           <label className="Form__label" htmlFor="email">
             Email
           </label>
-          <input className="Form__input" id="email" type="email" name="email" />
+          <input
+            className="Form__input"
+            id="email"
+            type="email"
+            {...getInputProps("email")}
+          />
         </div>
         <div className="Form__group">
           <label className="Form__label" htmlFor="password">
@@ -59,7 +60,7 @@ const Form = (props) => {
             className="Form__input"
             id="password"
             type="password"
-            name="password"
+            {...getInputProps("password")}
           />
         </div>
         <div className="Form__group">
@@ -69,8 +70,8 @@ const Form = (props) => {
           <input
             className="Form__input"
             id="isAdmin"
-            name="isAdmin"
             type="checkbox"
+            {...getInputProps("isAdmin")}
           />
         </div>
         <Button type="success">Submit</Button>

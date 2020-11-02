@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import ClassCounter from "Components/Class/ClassCounter";
+import ClassCounter from "Components/Class/ClassCounter";
 import HookCounter from "Components/Hooks/HookCounter";
 import Container from "Components/Container";
 import Button from "Components/Button";
@@ -37,7 +37,7 @@ const Intro = (props) => {
       </div>
 
       <div className="d-flex">
-        {/* {toggleClass && <ClassCounter />} */}
+        {toggleClass && <ClassCounter />}
         {toggleHook && <HookCounter />}
       </div>
     </Container>
